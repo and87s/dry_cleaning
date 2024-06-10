@@ -12,7 +12,7 @@ class generalList:
             return 1
         return max(self.getCodes()) + 1
     def getCodes(self):return [s.getCode() for s in self.__list]
-    def getItems(self):
+    def getItems(self) -> list[general]:
         return self.__list
     def appendItem(self, value):
         if isinstance(value, general):

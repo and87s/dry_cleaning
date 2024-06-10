@@ -29,7 +29,7 @@ class service(general):
             self.__sum = value
     def getKindService(self):
             return self.__kindService
-    def getClient(self):
+    def getClient(self) -> client:
             return self.__client
     def getDateReception(self) -> datetime:
             return self.__dateReception
@@ -41,7 +41,8 @@ class service(general):
             return self.__count
     def getSum(self):
             return self.__sum
-    def finalprice(self):
+    def finalprice(self) -> float:
+        result = 0.0
         s=self.getClient().getRegular()
         q=self.getKindService().getPrice()
         count=self.getCount()
