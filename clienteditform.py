@@ -1,4 +1,4 @@
-from PyQt5.QtWidgets import QLineEdit
+from PyQt5.QtWidgets import QLineEdit, QCheckBox
 from editform import editForm
 
 class clientEditForm(editForm):
@@ -8,6 +8,7 @@ class clientEditForm(editForm):
         self.__surnameEdit=QLineEdit()
         self.__nameEdit=QLineEdit()
         self.__secnameEdit=QLineEdit()
+        self.__regularEdit = QCheckBox()
 
         self.addLabel(u'Фамилия',0,0)
         self.addNewWidget(self.__surnameEdit,0,1)
@@ -15,6 +16,8 @@ class clientEditForm(editForm):
         self.addNewWidget(self.__nameEdit,1,1)
         self.addLabel(u'Отчество',2,0)
         self.addNewWidget(self.__secnameEdit,2,1)
+        self.addLabel(u'Постоянный',3,0)
+        self.addNewWidget(self.__regularEdit,3,1)
 
         clientList = self.getCleaner().getClientList()
         if clientList: 
@@ -26,11 +29,14 @@ class clientEditForm(editForm):
             self.__surnameEdit.setText(client.getSurname())
             self.__nameEdit.setText(client.getName())
             self.__secnameEdit.setText(client.getSecname())
+            self.__regularEdit.setChecked(client.getRegular())
+            
 
     def editClick(self):
         self.getCleaner().getClient(self.getCurrentCode()).setSurname(self.__surnameEdit.text())
         self.getCleaner().getClient(self.getCurrentCode()).setName(self.__nameEdit.text())
         self.getCleaner().getClient(self.getCurrentCode()).setSecname(self.__secnameEdit.text())
+        self.getCleaner().getClient(self.getCurrentCode()).setRegular(self.__regularEdit.checkState())
 
     def newClick(self):
         client=self.getCleaner().newClient()

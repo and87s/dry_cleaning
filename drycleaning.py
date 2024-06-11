@@ -45,8 +45,9 @@ class dryСleaning():
       self.__kindServiceList.createItem(code,name, typeservice,price)
    def newKindService(self,code=0,name = '', typeservice = '', price = 0):
       self.__kindServiceList.newItem(code,name, typeservice,price)
-   def removeKindService(self,code):self.__kindServiceList.removeItem(code)
-   def getKindService(self,code):
+   def removeKindService(self,code):
+      self.__kindServiceList.removeItem(code)
+   def getKindService(self,code) -> kindService:
       return self.__kindServiceList.findByCode(code)
    def getKindServiceList(self)  -> list[kindService]:
       return self.__kindServiceList.getItems()
