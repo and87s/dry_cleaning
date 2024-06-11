@@ -36,7 +36,8 @@ class dryСleaning():
       self.__serviceList.removeItem(code)
       for b in self.__serviceList.getItems():
          b.setService(None)
-   def getService(self,code):return self.__serviceList.findByCode(code)
+   def getService(self,code) -> service:
+      return self.__serviceList.findByCode(code)
    def getServiceList(self) -> list[service]:
       return self.__serviceList.getItems()
    def getServiceCodes(self) -> list[int]:

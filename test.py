@@ -1,7 +1,7 @@
 from PyQt5.QtWidgets import QApplication
 from drycleaning import dryСleaning
 from dataxml import dataxml
-from clienteditform import clientEditForm as testwidget
+from serviceeditform import serviceEditForm as testwidget
 import sys
 
 app = QApplication(sys.argv)
