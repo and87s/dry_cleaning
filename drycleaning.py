@@ -30,12 +30,12 @@ class dryСleaning():
       return self.__clientlist.getCodes()
    def createService(self,code=0,kindService = None, count = 0, client = None,dateReception = None,dateReturn = None):
       self.__serviceList.createItem(code,kindService,count,client,dateReception,dateReturn)
-   def newService(self,code, kindService = None, count = 0, client = None,dateReception = None,dateReturn = None):
-      self.__serviceList.newItem(code,kindService,count,client,dateReception,dateReturn)
-   def removeService(self,code,kindService = None, count = 0, client = None, dateReception = None, dateReturn = None):
-      self.__serviceList.removeItem(code)
-      for b in self.__serviceList.getItems():
-         b.setService(None)
+   def newService(self, kindService = None, count = 0, client = None,dateReception = None,dateReturn = None):
+      return self.__serviceList.newItem(kindService,count,client,dateReception,dateReturn)
+   def removeService(self,item):
+      self.__serviceList.removeItem(item)
+      #for b in self.__serviceList.getItems():
+      #   b.setService(None)
    def getService(self,code) -> service:
       return self.__serviceList.findByCode(code)
    def getServiceList(self) -> list[service]:

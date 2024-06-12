@@ -8,3 +8,4 @@ class clientCombo(dbComboBox):
         currentClient = self.getCleaner().getService(self.getCurrentRec()).getClient()
         if currentClient:
             self.setCurrentCode(currentClient.getCode())
+        else: self.setCurrentIndex(-1)

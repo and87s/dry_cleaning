@@ -8,3 +8,5 @@ class kindServiceCombo(dbComboBox):
         currentKindService = self.getCleaner().getService(self.getCurrentRec()).getKindService()
         if currentKindService:
             self.setCurrentCode(currentKindService.getCode())
+        else:
+            self.setCurrentIndex(-1)

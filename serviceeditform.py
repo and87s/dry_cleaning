@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QVBoxLayout,QLineEdit,QPushButton,QLabel,QSpinBox,QFileDialog,QDoubleSpinBox,QDateEdit
 from PyQt5 import QtCore
+from PyQt5 import QtGui
 from editform import editForm
 from dbcombobox import dbComboBox
 from clientcombo import clientCombo
@@ -22,9 +23,9 @@ class serviceEditForm(editForm):
         self.addLabel(u'Количество', 2, 0)
         self.addNewWidget(self.__CountSpin,2,1)
 
-        self.__DateReceptionEdit = QDateEdit()
-        self.__DateReceptionEdit.setDisplayFormat('dd.MM.yyyy')
-        self.__DateReceptionEdit.setCalendarPopup(True)
+        self.__DateReceptionEdit = QLineEdit()
+        #self.__DateReceptionEdit.setDisplayFormat('dd.MM.yyyy')
+        #self.__DateReceptionEdit.setCalendarPopup(True)
         self.addLabel(u'Дата приема', 3, 0)
         self.addNewWidget(self.__DateReceptionEdit,3,1)
 
@@ -37,23 +38,58 @@ class serviceEditForm(editForm):
             self.setCurrentCode(self.getCleaner().getServiceList()[0].getCode())
 
     def update(self):
+        self.__ClientCombo.setCurrentIndex(-1)
+        self.__KindServiceCombo.setCurrentIndex(-1)
+        self.__CountSpin.clear()
+
+        #self.__DateReceptionEdit.setSpecialValueText('')
+        #self.__DateReceptionEdit.setDate(self.__DateReceptionEdit.minimumDate())
+        self.__DateReceptionEdit.setClearButtonEnabled(True)
+                
+        self.__DateReturnEdit.setSpecialValueText('')
+        self.__DateReturnEdit.setDate(self.__DateReturnEdit.minimumDate())
+
+        #self.__DateReceptionEdit.clear()
+        #self.__DateReceptionEdit.findChild(QLineEdit).setText('')
+        
+        #self.__DateReturnEdit.clear()
+        #self.__DateReturnEdit.findChild(QLineEdit).setText('')
+     
         if self.getCurrentCode() in self.getCleaner().getServiceCodes():
             self.__ClientCombo.setCurrentRec(self.getCurrentCode())
             self.__KindServiceCombo.setCurrentRec(self.getCurrentCode())
             self.__CountSpin.setValue(self.getCleaner().getService(self.getCurrentCode()).getCount())
-            self.__DateReceptionEdit.setDate(self.getCleaner().getService(self.getCurrentCode()).getDateReception())
-            self.__DateReturnEdit.setDate(self.getCleaner().getService(self.getCurrentCode()).getDateReturn())
-    
+            dateReception = self.getCleaner().getService(self.getCurrentCode()).getDateReception()
+            dateReturn= self.getCleaner().getService(self.getCurrentCode()).getDateReturn()
+
+            if dateReception:
+                self.__DateReceptionEdit.setText(dateReception.toString('dd-MM-yyyy'))
+            #if dateReception: 
+            #    self.__DateReceptionEdit.setDate(dateReception)
+            if dateReturn: 
+                self.__DateReturnEdit.setDate(dateReturn)
+                
     def editClick(self):
-        self.getCleaner().getService(self.getCurrentCode()).setClient(self.__ClientCombo.getCurrentCode())
-        self.getCleaner().getService(self.getCurrentCode()).setKindService(self.__KindServiceCombo.getCurrentCode())
+        c = self.getCleaner().getClient(self.__ClientCombo.getCurrentCode())
+        self.getCleaner().getService(self.getCurrentCode()).setClient(c)
+
+        k = self.getCleaner().getKindService(self.__KindServiceCombo.getCurrentCode())
+        self.getCleaner().getService(self.getCurrentCode()).setKindService(k)
         self.getCleaner().getService(self.getCurrentCode()).setCount(self.__CountSpin.value())
-        self.getCleaner().getService(self.getCurrentCode()).setDateReception(self.__DateReceptionEdit.date())
-        self.getCleaner().getService(self.getCurrentCode()).setDateReturn(self.__DateReturnEdit.date())
+
+        QDateReception = self.__DateReceptionEdit.selectedText()
+
+        #QDateReception = self.__DateReceptionEdit.date()
+        #if not QDateReception == self.__DateReceptionEdit.minimumDate():
+            #self.getCleaner().getService(self.getCurrentCode()).setDateReception(QDateReception.toPyDate())
+
+        QDateReturn = self.__DateReturnEdit.date()
+        if not QDateReturn == self.__DateReceptionEdit.minimumDate():
+            self.getCleaner().getService(self.getCurrentCode()).setDateReturn(QDateReturn.toPyDate())
 
     def newClick(self):
-        b=self.getCleaner().newService()
+        b=self.getCleaner().newService("",0,"",None,None)
         self.setCurrentCode(b.getCode())
 
     def delClick(self):
-        self.getCleaner().removeService(self.getCurrentCode())      
+        self.getCleaner().removeService(self.getCleaner().getService(self.getCurrentCode()))      

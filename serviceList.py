@@ -13,15 +13,18 @@ class ServiceList(generalList):
         else:self.appendItem(service(code, kindService, count, client, dateReception, dateReturn))
 
     def removeItem(self, value):
-          if isinstance(value, service):
-              self.__list.remove(value)
-              if isinstance(value, int):
-                  service = self.findByCode(value)
-                  if service:
-                      self.__list.remove(service)
+        #self.__list.remove(value)
+        if isinstance(value, int):
+            s = self.findByCode(value)
+            if s:
+                generalList.removeItem(s)
+        if isinstance(value, service):
+            generalList.removeItem(self, value)
     
     def newItem(self, kindService, count, client, dateReception, dateReturn):
-            self.appendItem(service(self.getNewCode(), kindService, count, client, dateReception, dateReturn))
+            b = service(self.getNewCode(), kindService, count, client, dateReception, dateReturn)
+            self.appendItem(b)
+            return b
     def getCountClient(self, value):
         i = 0
         for l in self.getList():
