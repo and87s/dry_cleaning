@@ -19,7 +19,8 @@ class serviceEditForm(editForm):
         self.addNewWidget(self.__KindServiceCombo,1,1)
 
         self.__CountSpin=QSpinBox()
-        self.__CountSpin.setRange(0,1000)
+        self.__CountSpin.setRange(1,1000)
+        self.__CountSpin.setSpecialValueText('')
         self.addLabel(u'Количество', 2, 0)
         self.addNewWidget(self.__CountSpin,2,1)
 
@@ -35,7 +36,7 @@ class serviceEditForm(editForm):
         #self.addNewWidget(self.__DateReturnEdit,4,1)
         #if self.getCleaner().getServiceList():
         #    self.setCurrentCode(self.getCleaner().getServiceList()[0].getCode())
-
+   
     def update(self):
         self.__ClientCombo.setCurrentIndex(-1)
         self.__KindServiceCombo.setCurrentIndex(-1)
@@ -57,7 +58,6 @@ class serviceEditForm(editForm):
             self.__ClientCombo.setCurrentRec(self.getCurrentCode())
             self.__KindServiceCombo.setCurrentRec(self.getCurrentCode())
             self.__CountSpin.setValue(self.getCleaner().getService(self.getCurrentCode()).getCount())
-            
             #dateReception = self.getCleaner().getService(self.getCurrentCode()).getDateReception()
             #dateReturn= self.getCleaner().getService(self.getCurrentCode()).getDateReturn()
 

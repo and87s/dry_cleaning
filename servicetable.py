@@ -1,6 +1,6 @@
 from PyQt5.QtWidgets import QTableWidgetItem,QLabel
-from PyQt5.QtGui import QPixmap
-from PyQt5 import QtCore
+from PyQt5.QtWidgets import QTableWidget
+from PyQt5 import QtWidgets
 from dbtablewidget import dbTableWidget
 
 class serviceTable(dbTableWidget):
@@ -15,7 +15,7 @@ class serviceTable(dbTableWidget):
             u'Дата возврата'
         ]
         dbTableWidget.__init__(self,cleaner=cleaner,parent=parent,header=header)
-
+        
     def setData(self):
         values = self.getCleaner().getServiceCodes()
         self.setRowCount(len(values))
