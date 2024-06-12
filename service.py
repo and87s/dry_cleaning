@@ -36,7 +36,8 @@ class service(general):
                 return self.__client
         def getClientDesc(self):
                 s=''
-                if self.getClient(): self.getClient().getDecription()
+                if self.getClient(): 
+                        s = self.getClient().getDecription()
                 return s
         def getDateReception(self) -> datetime:
                 return self.__dateReception
