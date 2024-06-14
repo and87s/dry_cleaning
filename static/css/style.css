@@ -1,0 +1,11 @@
+.header{
+    background-color: gray;
+}
+
+.oddline{
+    background-color: none;
+}
+
+.evenline{
+    background-color: silver;
+}

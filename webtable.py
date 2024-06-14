@@ -15,9 +15,10 @@ class webTable(cleanerWidget):
 
     def __start(self):
         self.__numLines=0
-        s='<table><th class=header></th>'
+        s='<table class="table table-striped"><thead><tr><th class=header></th>'
         for k in self.getHeader():
             s+='<th class=header>%s</th>'%k
+        s+='</tr></thead><tbody>'
         return s
         
     def appendLine(self,code=0,value=[]):
@@ -32,7 +33,7 @@ class webTable(cleanerWidget):
         return s
     
     def __end(self):
-        return "</table>"
+        return "</tbody></table>"
         
     def setData(self):
         return ''
