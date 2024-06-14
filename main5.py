@@ -26,7 +26,7 @@ class root:
             cherrypy.HTTPRedirect('/')
 
             
-        self.ef.setCode(**kwargs['code'])
+        self.ef.setCode(kwargs['code'])
         return self.ef.index()
     
     index.exposed=True
