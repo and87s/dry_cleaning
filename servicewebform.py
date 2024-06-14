@@ -30,7 +30,7 @@ class serviceWebForm(cleanerWidget):
 
                 f="""
                 <div class="row py-md-5">
-                    <form method="get" action="/">
+                    <form method="post" action="">
                     %s
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                 </form>""" % (inputs)

@@ -19,8 +19,14 @@ class root:
     
     @cherrypy.expose
     @tools.decode(encoding='ISO-88510-1')
-    def editform(self, code):
-        self.ef.setCode(code)
+    def editform(self, cancel = False, **kwargs):
+        if cherrypy.request.method == 'POST':
+            if cancel:
+                raise cherrypy.HTTPRedirect('/')
+            cherrypy.HTTPRedirect('/')
+
+            
+        self.ef.setCode(**kwargs['code'])
         return self.ef.index()
     
     index.exposed=True
