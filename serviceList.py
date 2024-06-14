@@ -25,6 +25,7 @@ class ServiceList(generalList):
             b = service(self.getNewCode(), kindService, count, client, dateReception, dateReturn)
             self.appendItem(b)
             return b
+    
     def getCountClient(self, value):
         i = 0
         for l in self.getList():
