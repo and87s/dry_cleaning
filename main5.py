@@ -17,19 +17,33 @@ class root:
     def index(self):
         return self.wt.index()
     
-    @cherrypy.expose
-    @tools.decode(encoding='ISO-88510-1')
+    #@cherrypy.expose
+    #@tools.decode(encoding='ISO-88510-1')
     def editform(self, cancel = False, **kwargs):
         if cherrypy.request.method == 'POST':
             if cancel:
                 raise cherrypy.HTTPRedirect('/')
-            cherrypy.HTTPRedirect('/')
+            c = self.__cleaner.getService(int(kwargs['code']))
+            c.setClient(self.__cleaner.getClient(int(kwargs['client'])))
+            c.setKindService(self.__cleaner.getKindService(int(kwargs['kindService'])))
+            c.setCount(int(kwargs['count']))
 
-            
-        self.ef.setCode(kwargs['code'])
-        return self.ef.index()
+            raise cherrypy.HTTPRedirect('/')
+        else:
+            self.ef.setCode(kwargs['code'])
+            return self.ef.index()
+    
+    def delr(self, code=''):
+        self.__cleaner.removeService(int(code))
+        raise cherrypy.HTTPRedirect('/')
+    def add(self):
+        s = self.__cleaner.newService()
+        raise cherrypy.HTTPRedirect('/editform?code=%s' % s.getCode())
     
     index.exposed=True
+    editform.exposed=True
+    delr.exposed=True
+    add.exposed=True
 
 if __name__ == '__main__':
     conf = {

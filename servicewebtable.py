@@ -13,6 +13,6 @@ class serviceWebTable(webTable):
                                 service.getCount(),
                                 service.getPrice(),
                                 service.finalprice(),
-                                datetime.strftime(service.getDateReception(),'%d.%m.%Y'),
-                                datetime.strftime(service.getDateReturn(),'%d.%m.%Y')])
+                                datetime.strftime(service.getDateReception(),'%d.%m.%Y') if service.getDateReception() else '',
+                                datetime.strftime(service.getDateReturn(),'%d.%m.%Y') if service.getDateReturn() else ''])
         return s

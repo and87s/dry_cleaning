@@ -14,7 +14,7 @@ class webSelect(cleanerWidget, formElement):
         return self.__currentValue
     
     def __start(self):
-        s='<select id="%s" class="form-select %s" name="%s">' %(self.getId(), self.getName(), self.getClass())
+        s='<select id="%s" name="%s" class="form-select %s">' %(self.getId(), self.getName(), self.getClass())
         return s
 
     def appendOption(self,value='', text=''):

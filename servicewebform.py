@@ -8,9 +8,9 @@ class serviceWebForm(cleanerWidget):
     def __init__(self, cleaner = None, code = None) -> None:
         cleanerWidget.__init__(self,cleaner)
         self.setCode(code)
-        self.__clientSelect = clientWebSelect(cleaner, 'client')
-        self.__kindSelect = kindServiceWebSelect(cleaner, 'kindService')
-        self.__countEdit = webInput(cleaner, 'number', 'count')
+        self.__clientSelect = clientWebSelect(cleaner, 'client', 'client')
+        self.__kindSelect = kindServiceWebSelect(cleaner, 'kindService', 'kindService')
+        self.__countEdit = webInput(cleaner, 'number', 'count', 'count')
         
     def setCode(self, code):
         self.__code = code
@@ -19,9 +19,12 @@ class serviceWebForm(cleanerWidget):
         if self.__code:
             service = self.getCleaner().getService(int(self.__code))
             if service:
-
-                self.__clientSelect.setCurrentValue(service.getClient().getCode())
-                self.__kindSelect.setCurrentValue(service.getKindService().getCode())
+                client = service.getClient()
+                if client:
+                    self.__clientSelect.setCurrentValue(client.getCode())
+                kindService = service.getKindService()
+                if kindService:
+                    self.__kindSelect.setCurrentValue(kindService.getCode())
                 self.__countEdit.setValue(service.getCount())
                 inputs=''
                 inputs+=self.addRow(self.__clientSelect, "Клиент")

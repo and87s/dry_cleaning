@@ -29,11 +29,17 @@ class webTable(cleanerWidget):
         s='<tr%s><td>%s</td>'%(bg,self.__numLines)
         for k in value:
             s+='<td>%s</td>'%k
-        s+='<td><a href=editform?code=%s>редактировать</a></td><td><a href=delr?code=%s>удалить</a></td></tr>'%(code,code)
+        s+='<td><a type="button" class="btn btn-secondary" href=editform?code=%s>редактировать</a></td><td><a type="button" class="btn btn-danger" href=delr?code=%s>удалить</a></td></tr>'%(code,code)
         return s
     
     def __end(self):
-        return "</tbody></table>"
+        return """
+        </tbody></table>
+        <div class="col">
+        </div>
+        <div class="col-md-2">
+            <a class="btn btn-primary" href="add" role="button">Добавить</a>
+        </div>"""
         
     def setData(self):
         return ''

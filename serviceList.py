@@ -17,7 +17,7 @@ class ServiceList(generalList):
         if isinstance(value, int):
             s = self.findByCode(value)
             if s:
-                generalList.removeItem(s)
+                generalList.removeItem(self, s)
         if isinstance(value, service):
             generalList.removeItem(self, value)
     

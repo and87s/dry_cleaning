@@ -8,4 +8,5 @@ class serviceTableWebPage(webPage):
     
     def middle(self):
         s=self.__table.update()
-        return '<div class="row py-md-5">%s</div>' % (s)
+        return """
+        <div class="row py-md-5">%s</div>""" % (s)
