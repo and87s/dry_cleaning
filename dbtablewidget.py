@@ -1,3 +1,4 @@
+from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QTableWidget
 from rowcode import rowCode
 from cleanerwidget import cleanerWidget
@@ -12,6 +13,7 @@ class dbTableWidget(QTableWidget,cleanerWidget):
     def setHeader(self,value):
         self.setColumnCount(len(value))
         self.setHorizontalHeaderLabels(value)
+        self.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.ResizeMode.Stretch)
     def clearContents(self):
         self.__rowCode.clear()
         QTableWidget.clearContents(self)

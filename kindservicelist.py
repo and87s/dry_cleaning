@@ -20,4 +20,6 @@ class KindServiceList:
         if code in self.getCodes():print('KindService with code %s already exists')
         else:self.appendItem(kindService(code,name,typeservice,price))
     def newItem(self,name,typeservice,price):
-        self.appendItem(kindService(self.getNewCode(),name,typeservice,price))
+        k = kindService(self.getNewCode(),name,typeservice,price)
+        self.appendItem(k)
+        return k

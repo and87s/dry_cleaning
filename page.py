@@ -6,26 +6,26 @@ class page(QWidget,cleanerWidget):
         QWidget.__init__(self,parent=parent)
         cleanerWidget.__init__(self,cleaner)
         self.__vbox=QVBoxLayout()
-       
+        self.__hbox=QHBoxLayout()
+        self.__buttonbox=QHBoxLayout()
         self.__newButton=QPushButton(u"Добавить")
         self.__editButton=QPushButton(u"Изменить")
         self.__delButton=QPushButton(u"Удалить")
-
-        self.__buttonbox=QHBoxLayout()
+        self.__vbox.addLayout(self.__buttonbox)
+        self.__vbox.addLayout(self.__hbox)
         self.__buttonbox.addWidget(self.__newButton)
         self.__buttonbox.addWidget(self.__editButton)
         self.__buttonbox.addWidget(self.__delButton)
-
-        self.__vbox.addLayout(self.__buttonbox)
+        self.__buttonbox.addStretch(1)
         self.setLayout(self.__vbox)
 
     def setTable(self,value):
         self.__table=value
-        self.__vbox.insertWidget(1,self.__table)
+        self.__vbox.insertWidget(0,self.__table)
 
     def setForm(self,value):
         self.__form=value
-        self.__vbox.insertWidget(2,self.__form)
+        self.__hbox.insertWidget(1,self.__form)
 
     def newClick(self):
         self.__form.newClick()

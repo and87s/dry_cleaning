@@ -19,7 +19,7 @@ class dryСleaning():
    def createClient(self,code=0,surname='',name='',secname='', regular =0):
       self.__clientlist.createItem(code,surname,name,secname,regular)
    def newClient(self,surname='',name='',secname='',regular =0) -> client:
-      self.__clientlist.newItem(surname,name,secname,regular)
+      return self.__clientlist.newItem(surname,name,secname,regular)
    def removeClient(self,value):
       self.__clientlist.removeItem(value)
    def getClient(self,code) -> client: 
@@ -44,8 +44,8 @@ class dryСleaning():
       return self.__serviceList.getCodes()
    def createKindService(self,code=0,name = '', typeservice = '', price = 0):
       self.__kindServiceList.createItem(code,name, typeservice,price)
-   def newKindService(self,code=0,name = '', typeservice = '', price = 0):
-      self.__kindServiceList.newItem(code,name, typeservice,price)
+   def newKindService(self,name = '', typeservice = '', price = 0):
+      return self.__kindServiceList.newItem(name, typeservice,price)
    def removeKindService(self,code):
       self.__kindServiceList.removeItem(code)
    def getKindService(self,code) -> kindService:

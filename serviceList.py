@@ -32,11 +32,13 @@ class ServiceList(generalList):
             if l.getClient() == value: i = i+1
         return i
     def receptionItem(self,value):
-        if isinstance(value, service): self.appendItem(value)
-        value.setDateReception(datetime.now())
-        client = value.getClient()
-        if client.getRegular != True:
-            if self.getCountClient(client) >= 3:
-                client.setRegular(True)
+        if isinstance(value, service):
+            if not value.getCode() in self.getCodes():
+                self.appendItem(value)
+            value.setDateReception(datetime.now())
+            client = value.getClient()
+            if client.getRegular != True:
+                if self.getCountClient(client) >= 3:
+                    client.setRegular(True)
     def returnItem(self, value):
         if isinstance(value, service): value.setDateReturn(datetime.now())

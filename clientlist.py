@@ -31,4 +31,6 @@ class ClientList:
             print('Client with code %s already exists' % code)
         else:self.appendItem(client(code, surname, name, secname, regular))
     def newItem(self, surname="", name="", secname="", regular=0):
-            self.appendItem(client(self.getNewCode(), surname, name, secname, regular))
+            c = client(self.getNewCode(), surname, name, secname, regular)
+            self.appendItem(c)
+            return c

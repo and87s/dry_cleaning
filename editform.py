@@ -12,9 +12,12 @@ class editForm(QWidget,cleanerWidget):
         self.__vbox.addStretch(1)
         self.__hbox.addLayout(self.__vbox)
         self.setLayout(self.__hbox)
-    def addLabel(self,text,x,y):self.__grid.addWidget(QLabel(text),x,y)
-    def addNewWidget(self,widget,x,y):self.__grid.addWidget(widget,x,y)
-    def addLeftLayout(self,layout):self.__hbox.insertLayout(0,layout)
+    def addLabel(self,text,x,y):
+        self.__grid.addWidget(QLabel(text),x,y)
+    def addNewWidget(self,widget,x,y):
+        self.__grid.addWidget(widget,x,y)
+    def addLeftLayout(self,layout):
+        self.__hbox.insertLayout(0,layout)
     def setCurrentCode(self,value):
         self.__currentCode=value
         self.update()

@@ -5,11 +5,14 @@ from editform import editForm
 from dbcombobox import dbComboBox
 from clientcombo import clientCombo
 from kindservicecombo import kindServiceCombo
+from PyQt5.QtWidgets import QWidget,QVBoxLayout,QHBoxLayout,QPushButton
 
 class serviceEditForm(editForm):
     def __init__(self,parent=None,cleaner=None):
         editForm.__init__(self,cleaner=cleaner,parent=parent)
 
+        boxLayout = QHBoxLayout()
+       
         self.__ClientCombo = clientCombo(cleaner = cleaner)
         self.addLabel(u'Клиент',0,0)
         self.addNewWidget(self.__ClientCombo,0,1)
@@ -23,6 +26,8 @@ class serviceEditForm(editForm):
         self.__CountSpin.setSpecialValueText('')
         self.addLabel(u'Количество', 2, 0)
         self.addNewWidget(self.__CountSpin,2,1)
+
+        #self.add
 
         #self.__DateReceptionEdit.setDisplayFormat('dd.MM.yyyy')
         #self.__DateReceptionEdit.setCalendarPopup(True)
