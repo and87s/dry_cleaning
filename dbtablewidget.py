@@ -25,7 +25,7 @@ class dbTableWidget(QTableWidget,cleanerWidget):
     def update(self,code=0):
         self.clearContents()
         self.setData()
-        self.resizeColumnsToContents()
-        self.resizeRowsToContents()
+#       self.resizeColumnsToContents()
+#       self.resizeRowsToContents()
         self.setCurrentCode(code)
     def setData(self):pass

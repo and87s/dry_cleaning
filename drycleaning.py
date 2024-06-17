@@ -54,3 +54,7 @@ class dryСleaning():
       return self.__kindServiceList.getItems()
    def getKindServiceCodes(self) -> list[int]:
       return self.__kindServiceList.getCodes()
+   def receptionItem(self,value):
+      return self.__serviceList.receptionItem(value)
+   def returnItem(self,value):
+      return self.__serviceList.returnItem(value)

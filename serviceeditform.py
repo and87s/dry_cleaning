@@ -96,4 +96,14 @@ class serviceEditForm(editForm):
         self.setCurrentCode(b.getCode())
 
     def delClick(self):
-        self.getCleaner().removeService(self.getCleaner().getService(self.getCurrentCode()))      
+        self.getCleaner().removeService(self.getCleaner().getService(self.getCurrentCode())) 
+
+    def receptionClik(self):
+        service = self.getCleaner().getService(self.getCurrentCode())
+        if service:
+            self.getCleaner().receptionItem(service)
+
+    def returnClik(self):
+        service = self.getCleaner().getService(self.getCurrentCode())
+        if service:
+            self.getCleaner().returnItem(service)

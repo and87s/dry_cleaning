@@ -16,13 +16,19 @@ class page(QWidget,cleanerWidget):
         self.__buttonbox.addWidget(self.__newButton)
         self.__buttonbox.addWidget(self.__editButton)
         self.__buttonbox.addWidget(self.__delButton)
-        self.__buttonbox.addStretch(1)
+        #self.__buttonbox.addStretch(1)
         self.setLayout(self.__vbox)
 
     def setTable(self,value):
         self.__table=value
         self.__vbox.insertWidget(0,self.__table)
 
+    def addButton(self, button):
+        self.__buttonbox.addWidget(button)
+    
+    def getForm(self):
+        return self.__form
+        
     def setForm(self,value):
         self.__form=value
         self.__hbox.insertWidget(1,self.__form)
